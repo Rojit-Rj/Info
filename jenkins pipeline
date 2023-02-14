@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('Cloning the Repo') {
+            steps {
+                git branch: 'dev', url: 'https://github.com/Venna12/taxi-booking.git'
+            }
+        }
+        
+        stage('Building the app'){
+            steps{
+                sh 'mvn package'
+            }
+        }
+    }
+}
