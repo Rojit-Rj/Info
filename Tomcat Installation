@@ -1,0 +1,60 @@
+Tomcat installation
+1)	sudo -i
+2)	apt-get update 
+3)	apt-get install default-jdk -y
+4)	java –version
+5)	cd /opt
+6)	wget http://mirrors.fibergrid.in/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.75.tar.gz
+7)	tar -xvzf /opt/apache-tomcat-8.5.75.tar.gz
+8)	ls 
+9)	mv apache-tomcat-8.5.75 tomcat
+10)	ls
+11)	cd tomcat/
+12)	cd bin
+13)	./startup.sh
+14)	Find  / -name context.xml
+15)	/opt/tomcat/conf/context.xml
+16)	
+17)	/opt/tomcat/webapps/host-manager/META-INF/context.xml
+18)	
+19)	/opt/tomcat/webapps/examples/META-INF/context.xml
+20)	
+21)	/opt/tomcat/webapps/manager/META-INF/context.xml
+22)	Vi opt/tomcat/webapps/host-manager/META-INF/context.xml
+
+
+<Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+</Context>
+
+<!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+</Context>
+
+
+
+
+
+<!--  
+ <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+</Context>
+
+          
+Cd conf 
+Vi user.xml
+<role rolename="manager-gui"/>
+	<role rolename="manager-script"/>
+	<role rolename="manager-jmx"/>
+	<role rolename="manager-status"/>
+<user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+<user username="deployer" password="deployer" roles="manager-script"/>
+<user username="tomcat" password="s3cret" roles="manager-gui"/>
+
+
+Install deploy to container plugin 
+
+
